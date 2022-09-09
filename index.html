@@ -5,14 +5,14 @@
 
 
     <!--Local sheet-->
-    <link rel="stylesheet" href=".assets/style.css">
-    <Title>Composer Quiz</Title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>Composer Quiz</title>
 </head>
 <body>
     <header>
         <!--a fixed card, like a nav bar on the top of the screen with a timer, or bottom right-->
             <!--Initially displays information about how the quiz works. Switches to a timer when the quiz starts. After answering a question or the timer runs out, players can click on "keep listening" to delay time until next quiz item-->
-        <nav class="timer">Time remaining will display here. After completing a question, you may continue listening before moving on if you wish.</nav> 
+        <nav class="timer">Time remaining will display <span id="counter">here.</span> After completing a question, you may continue listening before moving on if you wish.</nav> 
     </header>
 
 
@@ -28,19 +28,19 @@
     <div class="container">
         <section class="card">
             <form class="quiz-tile">
-                <header class="card-header">Composer Quiz</header>
+                <section class="card-header">Composer Quiz</section>
 
                 <section class="quote">"A quote of the composer will be here"</section>
-                <section class="question">You will have 30 seconds to deterime the composer based on background music, quote, and a fact. After 10 questions, the quiz will finish and you will be given your score.</section>
+                <section class="question">You will have 30 seconds to determine the composer based on background music, quote, and a fact. After 10 questions, the quiz will finish and you will be given your score.</section>
                 <section class="answers">
-                    <ul id="answer-list">
+                    <ol id="answer-list">
                         <li id="answer-1">Relevant composer</li>
                         <li id="answer-2">Relevant composer</li>
                         <li id="answer-3">Correct composer</li>
                         <li id="answer-4">Relevant composer</li>
-                    </ul>
+                    </ol>
                 </section>
-                <button id="answer-btn">Submit</button>    
+                <button id="answer-btn">Start Quiz</button>    
             </form>
         </section>
     </div>

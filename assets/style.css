@@ -5,3 +5,53 @@
     --dac: #8a8180;
     --txc: #69444e;
     }
+
+header {
+    
+    background-color: var(--dac);
+    width: 100%;
+    padding: 10px;
+}
+#counter {
+    color:red;
+}
+html, body{
+    display:flex;
+    justify-content:space-between;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: var(--bgc);
+    height:100%;
+    width:100%;}   
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9px;
+    margin: 10px;
+    padding: 10px;
+    width: 450px;
+    background: var(--dac);}   
+.card-header{
+    align-self:flex-start;
+}
+
+#answer-list{
+    list-style-type: lower-greek;
+    text-align: left;
+}
+#answer-list li:hover{
+    background-color: red;
+}
+
+
+footer {
+    flex-shrink: 0;
+    width: vh100;
+    background-color:var(--dac);
+    padding: 10px;
+    width: 100%;
+}
