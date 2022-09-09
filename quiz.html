@@ -12,7 +12,7 @@
     <header>
         <!--a fixed card, like a nav bar on the top of the screen with a timer, or bottom right-->
             <!--Initially displays information about how the quiz works. Switches to a timer when the quiz starts. After answering a question or the timer runs out, players can click on "keep listening" to delay time until next quiz item-->
-        <nav class="timer">Time remaining will display here. After completing a question, you may continue listening before moving on if you wish.</nav> 
+        <nav hidden class="timer"></nav> 
     </header>
 
 
@@ -28,16 +28,15 @@
     <div class="container">
         <section class="card">
             <form class="quiz-tile">
-                <header class="card-header">Composer Quiz</header>
-
-                <section class="quote">"A quote of the composer will be here"</section>
-                <section class="question">You will have 30 seconds to deterime the composer based on background music, quote, and a fact. After 10 questions, the quiz will finish and you will be given your score.</section>
+                <header class="card-header"></header>
+                <section class="question"></section>
+                <section class="quote"></section>
                 <section class="answers">
                     <ul id="answer-list">
-                        <li id="answer-1">Relevant composer</li>
-                        <li id="answer-2">Relevant composer</li>
-                        <li id="answer-3">Correct composer</li>
-                        <li id="answer-4">Relevant composer</li>
+                        <li id="answer-1"></li>
+                        <li id="answer-2"></li>
+                        <li id="answer-3"></li>
+                        <li id="answer-4"></li>
                     </ul>
                 </section>
                 <button id="answer-btn">Submit</button>    
@@ -48,8 +47,8 @@
 
 <footer>
 <!--EXTRA: would be cool if it displayed volume controls, and added the track name after completion of the question-->
-<section class="footer">Adjust volume here. After completing a question, you will see the track title and composer here.</section>
+<section hidden class="footer"></section>
 </footer>
-<script src="./assets/landing.js"></script>
+<script src="./assets/script.js"></script>
 </body>
 </html>
