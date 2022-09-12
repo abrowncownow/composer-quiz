@@ -32,68 +32,68 @@ qCard = [
     person: "Bela Bartok",
     trackName: "Romanian Folk Dances",
     src: "/assets/mp3s/romanian_folk_dances.mp3",
-    bg: `url("assets/images/opera.jpg")`,
+    bg: `url("assets/images/hungary.jpg")`,
     choices: ["Bela Bartok", "Igor Stravinsky", "Jean Sibelius", "Edward Elgar"]},
 
-    {quote: `“So long as the human spirit thrives on this planet, music in some living form will accompany and sustain it.”`,
-    person: "Aaron Copland"},
-
     {quote: `“Mournful and yet grand is the destiny of the artist.”`,
-    person: "Franz Liszt"},
+    person: "Franz Liszt",
+    trackName: "Transcendental Etude No. 4",
+    src: "/assets/mp3s/transcendental_no_4.mp3",
+    bg: `url("assets/images/piano_fire.jpg")`,
+    choices: ["Ludwig van Beethoven", "Frederic Chopin", "Sergei Prokofiev", "Franz Liszt"]},
 
-    {quote: `“Music begins where the possibilities of language end.”`,
-    person: "Jean Sibelius"},
+    {quote: `“The essence of the beautiful is unity in variety.”`,
+    person: "Felix Mendelssohn",
+    trackName: "Songs without Words, Op. 67 No. 2 & Op 62. No. 3",
+    src: "/assets/mp3s/sww_67_2-62_3.mp3",
+    bg: `url("assets/images/watercolor.jpg")`,
+    choices: ["Frederic Chopin", "Robert Schumann", "Felix Mendelssohn", "Franz Schubert"]},
 
-    {quote: `“I am hitting my head against the walls, but the walls are giving way.”`,
-    person: "Gustav Mahler"},
+    // {quote: `“Lesser artists borrow, great artists steal.”`,
+    // person: "Igor Stravinsky"},
 
-    {quote: `“I frequently hear music in the heart of noise.”`,
-    person: "George Gershwin"},
+    // {quote: `“Inspiration is a guest that does not willingly visit the lazy.”`,
+    // person: "Pyotr Ilyich Tchaikovsky"},
 
-    {quote: `“Lesser artists borrow, great artists steal.”`,
-    person: "Igor Stravinsky"},
+    // {quote: `“Don’t only practice your art, but force your way into its secrets.”`,
+    // person: "Ludwig van Beethoven"},
 
-    {quote: `“Inspiration is a guest that does not willingly visit the lazy.”`,
-    person: "Pyotr Ilyich Tchaikovsky"},
+    // {quote: `“I was obliged to be industrious. Whoever is equally industrious will succeed equally well.”`,
+    // person: "J.S. Bach"},
 
-    {quote: `“I always said God was against art and I still believe it.”`,
-    person: "Edward Elgar"},
+    // {quote: `“Without craftsmanship, inspiration is a mere reed shaken in the wind.”`,
+    // person: "Johannes Brahms"},
 
-    {quote: `“Music, being identical with heaven, isn’t a thing of momentary thrills, or even hourly ones. It’s a condition of eternity.”`,
-    person: "Gustav Holst"},
+    // {quote: `“I always said God was against art and I still believe it.”`,
+    // person: "Edward Elgar"},
 
-    {quote: `“Without craftsmanship, inspiration is a mere reed shaken in the wind.”`,
-    person: "Johannes Brahms"},
+    // {quote: `“There was no one near to confuse me, so I was forced to become original.”`,
+    // person: "Joseph Haydn"},
 
-    {quote: `“Don’t only practice your art, but force your way into its secrets.”`,
-    person: "Ludwig van Beethoven"},
+    // {quote: `“I am hitting my head against the walls, but the walls are giving way.”`,
+    // person: "Gustav Mahler"},
 
-    {quote: `“There was no one near to confuse me, so I was forced to become original.”`,
-    person: "Joseph Haydn"},
+    // {quote: `“Nothing primes inspiration more than necessity.”`,
+    // person: "Giacchino Rossini"},
 
-    {quote: `“If it is art, it is not for all, and if it is for all, it is not art.”`,
-    person: "Arnold Schoenberg"},
+    // {quote: `“I frequently hear music in the heart of noise.”`,
+    // person: "George Gershwin"},
 
-    {quote: `“As a musician I tell you that if you were to suppress adultery, fanaticism, crime, evil, the supernatural, there would no longer be the means for writing one note.”`,
-    person: "George Bizet"},
+    // {quote: `“Music, being identical with heaven, isn’t a thing of momentary thrills, or even hourly ones. It’s a condition of eternity.”`,
+    // person: "Gustav Holst"},
 
-    {quote: `“Music is a pastime, a relaxation from more serious occupations.”`,
-    person: "Alexander Borodin"},
+    // {quote: `“If it is art, it is not for all, and if it is for all, it is not art.”`,
+    // person: "Arnold Schoenberg"},
 
-    {quote: `“I was obliged to be industrious. Whoever is equally industrious will succeed equally well.”`,
-    person: "J.S. Bach"},
+    // {quote: `“As a musician I tell you that if you were to suppress adultery, fanaticism, crime, evil, the supernatural, there would no longer be the means for writing one note.”`,
+    // person: "George Bizet"},
 
-    {quote: `“Nothing primes inspiration more than necessity.”`,
-    person: "Giacchino Rossini"},
+    // {quote: `“Music is a pastime, a relaxation from more serious occupations.”`,
+    // person: "Alexander Borodin"},
 
-    {quote: `“The musician is perhaps the most modest of animals, but he is also the proudest.”`,
-    person: "Erik Satie"},
+    // {quote: `“The musician is perhaps the most modest of animals, but he is also the proudest.”`,
+    // person: "Erik Satie"},
 
-    {quote: `“Simplicity is the final achievement. After one has played a vast quantity of notes and more notes, it is simplicity that emerges as the crowning reward of art.”`,
-    person: "Frederic Chopin"},
-
-    {quote: `“To send light into the darkness of men’s hearts – such is the duty of the artist.”`,
-    person: "Robert Schumann"},
 
 ]
 //score
@@ -116,12 +116,12 @@ function timeRem(){
 $("#quote").text(`"A quote of the composer will be here"`);
 
 //rando selection
-var select = 2;
-// var select = selectRando();
+// var select = 5;
+ var select = 0;
 //rando code here
 function selectRando(){
-    random = Math.floor(Math.random * qCard.length);
-    return random;
+    rando = Math.floor(Math.random() * qCard.length);
+    return rando;
 }
 
 
@@ -140,7 +140,6 @@ $("#answer-4").css({"background-color": ""});
 //reveal answer
 function revealAnswer(){
     $("li").each(function() {
-        console.log(this);
         var li = $(this).text();
         if (li == qCard[select].person){
             $(this).css({"background-color": "var(--lac)"})
@@ -201,6 +200,8 @@ $("#answer-btn").click(runGame);
 function runGame(){
     //hide start button
     $("#answer-btn").hide();
+    //randomly select question
+    select=selectRando();
     //initialize text
     $(".question").text("");
     $(".footer").text("");
@@ -238,19 +239,14 @@ function runGame(){
         event.preventDefault()
         if (gameState =="running"){
             var response = $(this).text();
-            console.log(response);
             if (response === qCard[select].person){
                 clearInterval(timerId);
                 correct++;
-                console.log(correct);
-                console.log(this);
                 answered();
             }
             else {
                 clearInterval(timerId);
                 wrong++;
-                console.log(wrong);
-                console.log(this);
                 answered();
             }
         }
