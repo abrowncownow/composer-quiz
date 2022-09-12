@@ -174,13 +174,17 @@ function answered(){
     revealAnswer();
     scoreBoard();
     displayTrack();
+    qCard.splice(select,1);
     console.log(points);
     answeredQ++;
         if (answeredQ==5){
             gameState="scoring";
-            $("#answer-btn").show();
-            $("#answer-btn").text("Finish");
-            $("#answer-btn").click(enterHS);
+            $("#answer-btn").hide();
+            var finishBtn=$('<button/>')
+                .text('finish')
+                .attr("id", "finish")
+                .click(enterHS);
+            $(".card").append(finishBtn);
         } else if(!(answeredQ==5)){
             $("#answer-btn").show();
             $("#answer-btn").text("Next");
@@ -191,32 +195,59 @@ function answered(){
 function enterHS(event){
     event.preventDefault();
     //put stuff here
-
-    $(".card-header").text("High Score");
+    $(".answers").hide();
+    $(".timer").text("High Scores");
+    $(".card-header").text("High Scores");
     $(".quote").text("Congratulations!");
-    $("#answer-list").hide();
+    $("#finish").hide();
     $(".question").text("You scored a total of " + points + " points! Enter your initials to submit your score.");
     $("#initials").show();
-    $("#answer-btn").show();
-    $("#answer-btn").text("Submit");
-    console.log(highScore);
-    $("#answer-btn").click(submitHS);
+    $("#finish").show();
+    $("#finish").text("Submit");
+    $("#finish").click(submitHS);
 }
 //submit to local storage
-//need to fix this
-//
-//
-//
+
 function submitHS(event){
     event.preventDefault();
+    //local storage stuff
     var initials = $("#initials").val();
     var playerInfo = {'initials':initials, 'points':points};
+    var hsdl = localStorage.getItem('highscores');
+    if (hsdl){
+    console.log('highscores: ', JSON.parse(hsdl));
+    highScore = (JSON.parse(hsdl));
+    console.log(highScore);}
     highScore.push(playerInfo);
     localStorage.setItem('highscores',JSON.stringify(highScore))
-    var hsdl = localStorage.getItem('highscores');
-    console.log('highscores: ', JSON.parse(hsdl));
+    console.log(highScore);
+    //adjust text
+    $(".quote").hide();
+    $("#initals").remove();
+    $(".question").text("");
+    createTable();
+    $("#finish").hide();
+    var playAgainBtn=$('<button/>')
+        .text('Play Again')
+        .attr("id", "playAgain")
+        .click(function refresh(){
+            window.location.replace("index.html");
+        });
+    $(".card").append(playAgainBtn);
 }
 
+//create HS table function
+function createTable(){
+    var table =$('<table/>').addClass('hsTable');
+    var tHeader = $('<tr><th>' + 'Player' + '</th><th>' + 'Points' + '</th>').addClass('tHeader');
+    table.append(tHeader);
+    for (i=0; i<highScore.length; i++){
+        var row = $('<tr><td>' + highScore[i].initials + '</td><td>' + highScore[i].points + '</td></tr>').addClass('bar');
+        table.append(row);
+    }
+    $(".question").append(table);
+
+}
 
 //scoreboard
 function scoreBoard(){
@@ -263,8 +294,9 @@ function runGame(event){
             wrong++;
             answered();
             return currentTime;}
-        else if(gameState==="answered"){
+        else if((gameState==="answered")||(gameState==="scoring")){
             clearInterval(timerId);
+            $("#counter").text("");
         }
     }
     //score event

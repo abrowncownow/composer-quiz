@@ -76,7 +76,24 @@ html, body{
     padding: 3px;
     width: 50px;
 }
-
+#finish{
+    border-radius: 4px;
+    background-color: #75a556;
+    color: white;
+    border-style: hidden;
+    font-size: 16px;
+    padding: 3px;
+    width: 60px;
+}
+#playAgain{
+    border-radius: 4px;
+    background-color: #75a556;
+    color: white;
+    border-style: hidden;
+    font-size: 16px;
+    padding: 3px;
+    width: 80px;
+}
 footer {
     flex-shrink: 0;
     width: vh100;
