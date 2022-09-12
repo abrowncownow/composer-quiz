@@ -10,21 +10,21 @@ qCard = [
     {quote: `“Works of art make rules; rules do not make works of art.”`,
     person: "Claude Debussy",
     trackName: "Girl with the Flaxen Hair (Prelude No. 8)",
-    src: "/assets/mp3s/Debussy_prelude-8-gwtfh.mp3",
+    src: "/assets/mp3s/prelude-8-gwtfh.mp3",
     bg: `url("assets/images/piano_sheet_bg.jpg")`,
     choices: ["Maurice Ravel", "Ludwig van Beethoven", "Robert Schumann", "Claude Debussy"]},
 
     {quote: `“I should be sorry if I only entertained them. I wish to make them better.”`,
-    person: "Handel",
+    person: "George Handel",
     trackName: "Water Music (Alla Hornpipe)",
-    src: "/assets/mp3s/handel_water_music_alla_hornpipe.mp3",
+    src: "/assets/mp3s/water_music_alla_hornpipe.mp3",
     bg: `url("assets/images/water_music.jpg")`,
-    choices: ["Mozart", "Handel", "Bach", "Haydn"]},
+    choices: ["Wolfgang Amadeus Mozart", "George Handel", "Johann Sebastian Bach", "Joseph Haydn"]},
 
     {quote: `“To copy the truth can be a good thing, but to invent the truth is better, much better.”`,
     person: "Giuseppe Verdi",
     trackName: "La donna è mobile",
-    src: "/assets/mp3s/verdi_la_donna.mp3",
+    src: "/assets/mp3s/la_donna.mp3",
     bg: `url("assets/images/opera.jpg")`,
     choices: ["Pyotr Ilyich Tchaikovsky", "George Gershwin", "Giuseppe Verdi", "Johannes Brahms"]},
 
@@ -49,17 +49,40 @@ qCard = [
     bg: `url("assets/images/watercolor.jpg")`,
     choices: ["Frederic Chopin", "Robert Schumann", "Felix Mendelssohn", "Franz Schubert"]},
 
+    {quote: `“It is a mistake to think that the practice of my art has become easy to me.”`,
+    person: "Wolfgang Amadeus Mozart",
+    trackName: "Prelude & Fugue in C Major",
+    src: "/assets/mp3s/prelude_fugue_c.mp3",
+    bg: `url("assets/images/salzburg.jpg")`,
+    choices: ["Franz Schubert", "Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Ludwig van Beethoven"]},
+
+    {quote: `“I was obliged to be industrious. Whoever is equally industrious will succeed equally well.”`,
+    person: "Johann Sebastian Bach",
+    trackName: "Keyboard Concerto in D minor (First Movement)",
+    src: "/assets/mp3s/keyboard_concerto_dm.mp3",
+    bg: `url("assets/images/keyboard_concerto.jpg")`,
+    choices: ["Franz Schubert", "Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Ludwig van Beethoven"]
+    },
+
+    {quote: `“Don’t only practice your art, but force your way into its secrets.”`,
+    person: "Ludwig van Beethoven",
+    trackName: "Piano Trio in E-Flat Major, Op. 70 no. 2 (Finale)",
+    src: "/assets/mp3s/trio_eb_finale.mp3",
+    bg: `url("assets/images/trio.jpg")`,
+    choices: ["Franz Schubert", "Wolfgang Amadeus Mozart", "Felix Mendelssohn", "Ludwig van Beethoven"]},
+
+    {quote: `“When I wished to sing of love, it turned to sorrow. And when I wished to sing of sorrow, it was transformed for me into love.”`,
+    person: "Franz Schubert",
+    trackName: "Impromptu Op. 90 No. 4",
+    src: "/assets/mp3s/impromptu_90_4.mp3",
+    bg: `url("assets/images/steinway.jpg")`,
+    choices: ["Franz Schubert", "Robert Schumann", "Felix Mendelssohn", "Ludwig van Beethoven"]}
+
     // {quote: `“Lesser artists borrow, great artists steal.”`,
     // person: "Igor Stravinsky"},
 
     // {quote: `“Inspiration is a guest that does not willingly visit the lazy.”`,
     // person: "Pyotr Ilyich Tchaikovsky"},
-
-    // {quote: `“Don’t only practice your art, but force your way into its secrets.”`,
-    // person: "Ludwig van Beethoven"},
-
-    // {quote: `“I was obliged to be industrious. Whoever is equally industrious will succeed equally well.”`,
-    // person: "J.S. Bach"},
 
     // {quote: `“Without craftsmanship, inspiration is a mere reed shaken in the wind.”`,
     // person: "Johannes Brahms"},
@@ -177,6 +200,7 @@ function answered(){
     qCard.splice(select,1);
     console.log(points);
     answeredQ++;
+    currentTime = 45;
         if (answeredQ==5){
             gameState="scoring";
             $("#answer-btn").hide();
@@ -258,7 +282,7 @@ function scoreBoard(){
 var gameState = "landing";
 $("#answer-btn").click(runGame);
 
-
+let currentTime = 45;
 //Main function
 function runGame(event){
     event.preventDefault();
@@ -281,22 +305,22 @@ function runGame(event){
     //set gamestate
     gameState = "running";
     //set timer
-    var currentTime = 45;
     $("#counter").text(currentTime);
     let timerId = setInterval(timeRem, 1000)
     function timeRem(){ 
         $("#counter").text(currentTime);
         currentTime--;
-         if (currentTime === 0){
+         if (currentTime === 0 && gameState==="running"){
             window.alert("Times up! Feel free to keep listening!");
             clearInterval (timerId);
             $("#counter").text("");
             wrong++;
             answered();
-            return currentTime;}
+            }
         else if((gameState==="answered")||(gameState==="scoring")){
             clearInterval(timerId);
             $("#counter").text("");
+
         }
     }
     //score event
