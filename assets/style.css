@@ -1,6 +1,6 @@
 :root{
     --bgc: #f1daa1b0;
-    --lac: #8095abf9;
+    --lac: #8095ab;
     --mbc:#D68E65;
     --dac: #d06462c8;
     --txc: #412c30ba;
@@ -53,8 +53,7 @@ html, body{
 }
 .quote{
     font-family: 'Qwitcher Grypen', cursive;
-    font-size: 38px;
-    font-weight: bolder;
+    font-size: 42px;
     margin: 4px;
     padding: 4px;
     color: var(--lac)
@@ -106,3 +105,31 @@ footer {
     float:center;
     text-align: center;
 }
+.hsTable {
+    margin: 5px;
+    padding:5px;
+    border: 2px dotted #D06462;
+    background-color: var(--txc);
+    text-align: center;
+    border-collapse: collapse;
+  }
+  .hsTable td, .hsTable th {
+    border: 1px dotted #D06462;
+    padding: 3px 2px;
+  }
+  .hsTable th{
+    color: var(--txc);
+    background: var(--lac);
+    font-weight: bold;
+    font-size: 20px;
+
+  }
+  .hsTable td:first-child{
+    border-top-left-radius: 9;
+  }
+  .hsTable thead th {
+    font-size: 25px;
+    font-weight: bold;
+    color: #412C30;
+    text-align: center;
+  }

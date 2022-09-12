@@ -239,15 +239,16 @@ function submitHS(event){
     var playerInfo = {'initials':initials, 'points':points};
     var hsdl = localStorage.getItem('highscores');
     if (hsdl){
-    console.log('highscores: ', JSON.parse(hsdl));
-    highScore = (JSON.parse(hsdl));
-    console.log(highScore);}
+        console.log('highscores: ', JSON.parse(hsdl));
+        highScore = (JSON.parse(hsdl));
+    }
     highScore.push(playerInfo);
     localStorage.setItem('highscores',JSON.stringify(highScore))
-    console.log(highScore);
+
     //adjust text
+    $(".score").hide();
+    $("#initials").hide();
     $(".quote").hide();
-    $("#initals").remove();
     $(".question").text("");
     createTable();
     $("#finish").hide();
