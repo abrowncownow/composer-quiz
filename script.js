@@ -78,52 +78,11 @@ qCard = [
     bg: `url("assets/images/steinway.jpg")`,
     choices: ["Franz Schubert", "Robert Schumann", "Felix Mendelssohn", "Ludwig van Beethoven"]}
 
-    // {quote: `“Lesser artists borrow, great artists steal.”`,
-    // person: "Igor Stravinsky"},
-
-    // {quote: `“Inspiration is a guest that does not willingly visit the lazy.”`,
-    // person: "Pyotr Ilyich Tchaikovsky"},
-
-    // {quote: `“Without craftsmanship, inspiration is a mere reed shaken in the wind.”`,
-    // person: "Johannes Brahms"},
-
-    // {quote: `“I always said God was against art and I still believe it.”`,
-    // person: "Edward Elgar"},
-
-    // {quote: `“There was no one near to confuse me, so I was forced to become original.”`,
-    // person: "Joseph Haydn"},
-
-    // {quote: `“I am hitting my head against the walls, but the walls are giving way.”`,
-    // person: "Gustav Mahler"},
-
-    // {quote: `“Nothing primes inspiration more than necessity.”`,
-    // person: "Giacchino Rossini"},
-
-    // {quote: `“I frequently hear music in the heart of noise.”`,
-    // person: "George Gershwin"},
-
-    // {quote: `“Music, being identical with heaven, isn’t a thing of momentary thrills, or even hourly ones. It’s a condition of eternity.”`,
-    // person: "Gustav Holst"},
-
-    // {quote: `“If it is art, it is not for all, and if it is for all, it is not art.”`,
-    // person: "Arnold Schoenberg"},
-
-    // {quote: `“As a musician I tell you that if you were to suppress adultery, fanaticism, crime, evil, the supernatural, there would no longer be the means for writing one note.”`,
-    // person: "George Bizet"},
-
-    // {quote: `“Music is a pastime, a relaxation from more serious occupations.”`,
-    // person: "Alexander Borodin"},
-
-    // {quote: `“The musician is perhaps the most modest of animals, but he is also the proudest.”`,
-    // person: "Erik Satie"},
-
-
 ]
 //score
 var correct = 0;
 var wrong = 0;
 var points = 0;
-
 var highScore = []
 
 //timer
@@ -198,9 +157,7 @@ function answered(){
     scoreBoard();
     displayTrack();
     qCard.splice(select,1);
-    console.log(points);
     answeredQ++;
-    currentTime = 45;
         if (answeredQ==5){
             gameState="scoring";
             $("#answer-btn").hide();
@@ -278,12 +235,11 @@ function createTable(){
 function scoreBoard(){
     $(".score").text("Correct: " + correct + " Wrong: " + wrong);
 }
-
+let currentTime = 45;
 //listen for start
 var gameState = "landing";
 $("#answer-btn").click(runGame);
 
-let currentTime = 45;
 //Main function
 function runGame(event){
     event.preventDefault();
@@ -306,24 +262,27 @@ function runGame(event){
     //set gamestate
     gameState = "running";
     //set timer
-    $("#counter").text(currentTime);
-    let timerId = setInterval(timeRem, 1000)
+
     function timeRem(){ 
         $("#counter").text(currentTime);
         currentTime--;
-         if (currentTime === 0 && gameState==="running"){
+         if (currentTime === 0){
             window.alert("Times up! Feel free to keep listening!");
             clearInterval (timerId);
             $("#counter").text("");
             wrong++;
             answered();
+            return;
             }
         else if((gameState==="answered")||(gameState==="scoring")){
             clearInterval(timerId);
-            $("#counter").text("");
-
-        }
+            return}
+        
     }
+    currentTime = 45;
+    startClock();
+    function startClock(){
+    let timerId = setInterval(timeRem, 1000)}
     //score event
     function score(event){
         event.preventDefault()
@@ -335,7 +294,7 @@ function runGame(event){
                 correct++;
                 answered();
             }
-            else {
+            else if(!(response === qCard[select].person)){
                 clearInterval(timerId);
                 wrong++;
                 answered();
@@ -346,8 +305,3 @@ function runGame(event){
     if (gameState=="running"){$("#answer-list li").click(score)}
 
 }
-
-
-
-
-
