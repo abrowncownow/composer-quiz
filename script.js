@@ -99,22 +99,15 @@ qCard = [
 //score
 var correct = 0;
 var wrong = 0;
+var points = 0;
+
+var highScore = []
 
 //timer
 var count = $('#counter');
-var currentTime = 30;
-function timeRem(){ 
-    count.text (currentTime);
-    currentTime--;
-    if (currentTime === 0){
-        window.alert("Times up! Feel free to keep listening!");
-        clearInterval (timerId);
-        count.text("");
-        return currentTime;}
-}
 
 $("#quote").text(`"A quote of the composer will be here"`);
-
+$("#initials").hide();
 //rando selection
 // var select = 5;
  var select = 0;
@@ -173,18 +166,57 @@ function displayTrack(){
     var trackName = qCard[select].trackName;
     $(".question").text(`Listening to: "` + trackName + `" by ` + qCard[select].person);
 }
+//questions answered
+var answeredQ=0;
 //function answered
 function answered(){
     gameState = "answered";
     revealAnswer();
     scoreBoard();
-    $("#answer-btn").show();
-    $("#answer-btn").text("Next");
-    $("#answer-btn").click(runGame);
     displayTrack();
-    
-    
+    console.log(points);
+    answeredQ++;
+        if (answeredQ==5){
+            gameState="scoring";
+            $("#answer-btn").show();
+            $("#answer-btn").text("Finish");
+            $("#answer-btn").click(enterHS);
+        } else if(!(answeredQ==5)){
+            $("#answer-btn").show();
+            $("#answer-btn").text("Next");
+            $("#answer-btn").click(runGame); }   
 }
+
+//Enter High Score
+function enterHS(event){
+    event.preventDefault();
+    //put stuff here
+
+    $(".card-header").text("High Score");
+    $(".quote").text("Congratulations!");
+    $("#answer-list").hide();
+    $(".question").text("You scored a total of " + points + " points! Enter your initials to submit your score.");
+    $("#initials").show();
+    $("#answer-btn").show();
+    $("#answer-btn").text("Submit");
+    console.log(highScore);
+    $("#answer-btn").click(submitHS);
+}
+//submit to local storage
+//need to fix this
+//
+//
+//
+function submitHS(event){
+    event.preventDefault();
+    var initials = $("#initials").val();
+    var playerInfo = {'initials':initials, 'points':points};
+    highScore.push(playerInfo);
+    localStorage.setItem('highscores',JSON.stringify(highScore))
+    var hsdl = localStorage.getItem('highscores');
+    console.log('highscores: ', JSON.parse(hsdl));
+}
+
 
 //scoreboard
 function scoreBoard(){
@@ -197,7 +229,8 @@ $("#answer-btn").click(runGame);
 
 
 //Main function
-function runGame(){
+function runGame(event){
+    event.preventDefault();
     //hide start button
     $("#answer-btn").hide();
     //randomly select question
@@ -240,6 +273,7 @@ function runGame(){
         if (gameState =="running"){
             var response = $(this).text();
             if (response === qCard[select].person){
+                points+=currentTime;
                 clearInterval(timerId);
                 correct++;
                 answered();
@@ -252,7 +286,7 @@ function runGame(){
         }
     }
     //listen for answer selection
-    $("#answer-list li").click(score)
+    if (gameState=="running"){$("#answer-list li").click(score)}
 
 }
 
