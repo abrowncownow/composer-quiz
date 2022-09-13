@@ -137,10 +137,6 @@ function setBg(){
     $("body").css({"background-repeat": "no-repeat"});
     $("body").css({"background-size": "cover"});
 }
-//card update functions
-        //quiz start
-        //quiz next
-        //quiz finish
 
 //scoreboard
 function scoreBoard(){
@@ -235,34 +231,6 @@ function createTable(){
 
 }
 
-
-
-
-//timer
-// let timerId;
-// function startClock(){
-//     if((gameState==="answered")||(gameState==="scoring")){
-//         clearInterval(timerId);
-//     } 
-//     currentTime = 45;
-//     timerId = setInterval(timeRem, 1000)
-    
-// }
-// function timeRem(timerId){
-//         if (currentTime === 0 && gameState ==="running"){
-//             window.alert("Times up! Feel free to keep listening!");
-//             $("#counter").text("");
-//             wrong++;
-//             answered();
-//             clearInterval(timerId);
-//             }
-//         else if((gameState==="answered")||(gameState==="scoring")){
-//             clearInterval(timerId);
-//             }
-//     if (gameState=="running"){
-//     currentTime--;
-//     $("#counter").text(currentTime);} 
-// }
 var currentTime = 45;
 function startClock2(){
     var interval = setInterval(function() {
