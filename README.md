@@ -41,7 +41,7 @@ Navigate to page in browser. Read the how-to information present throughout the 
 
 ## Credits
 
-Developed by Alex Brown. Color Pallete generated using colormind. Free-use images found on unsplash.com. Music manually recorded and encoded by Alex Brown from free-use sources.
+Developed by Alex Brown. Color pallete generated using [colormind.io](colormind.io). Free-use images found on [unsplash.com](unsplash.com). Music manually recorded and encoded by Alex Brown from free-use sources. Quotes retreived from [https://racheltaylorgeier.org/2017/04/15/75-inspirational-composer-quotes/](https://racheltaylorgeier.org/2017/04/15/).
 
 ## License
 
