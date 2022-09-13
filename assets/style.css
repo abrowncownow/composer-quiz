@@ -38,7 +38,7 @@ html, body{
     border-radius: 9px;
     margin: 10px;
     padding: 10px;
-    width: 450px;
+    width: 575px;
     background: var(--txc);
     color: var(--bgc)}  
 
@@ -59,8 +59,16 @@ html, body{
     color: var(--lac)
 }
 #answer-list{
-    list-style-type: lower-alpha;
-    text-align: left;
+    list-style:outside;
+    list-style-type: upper-roman;
+    margin-left: -20px;
+}
+#answer-list li {
+    text-align: center;
+    margin: 4px;
+    padding: 4px;
+    margin-left: 0px;
+    padding-left:0px;
 }
 #answer-list li:hover{
     background-color: var(--lac);
