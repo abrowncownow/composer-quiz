@@ -85,8 +85,6 @@ var wrong = 0;
 var points = 0;
 var highScore = []
 
-//timer
-var count = $('#counter');
 
 $("#quote").text(`"A quote of the composer will be here"`);
 $("#initials").hide();
@@ -235,10 +233,57 @@ function createTable(){
 function scoreBoard(){
     $(".score").text("Correct: " + correct + " Wrong: " + wrong);
 }
-let currentTime = 45;
+
 //listen for start
 var gameState = "landing";
 $("#answer-btn").click(runGame);
+
+//timer
+// let timerId;
+// function startClock(){
+//     if((gameState==="answered")||(gameState==="scoring")){
+//         clearInterval(timerId);
+//     } 
+//     currentTime = 45;
+//     timerId = setInterval(timeRem, 1000)
+    
+// }
+// function timeRem(timerId){
+//         if (currentTime === 0 && gameState ==="running"){
+//             window.alert("Times up! Feel free to keep listening!");
+//             $("#counter").text("");
+//             wrong++;
+//             answered();
+//             clearInterval(timerId);
+//             }
+//         else if((gameState==="answered")||(gameState==="scoring")){
+//             clearInterval(timerId);
+//             }
+//     if (gameState=="running"){
+//     currentTime--;
+//     $("#counter").text(currentTime);} 
+// }
+let currentTime = 45;
+function startClock2(){
+    var interval = setInterval(function() {
+        currentTime--;
+        if (currentTime >= 0) {
+            $("#counter").text(currentTime);
+        }
+        if((gameState==="answered")||(gameState==="scoring")){
+            clearInterval(interval);
+            }
+        if (currentTime === 0) {
+            wrong++;
+            clearInterval(interval);
+            answered();
+            window.alert("Times up! Feel free to keep listening!");
+            
+        }
+
+    }, 1000);
+}
+
 
 //Main function
 function runGame(event){
@@ -248,6 +293,7 @@ function runGame(event){
     //randomly select question
     select=selectRando();
     //initialize text
+
     $(".question").text("");
     $(".footer").text("");
     $(".quote").text(qCard[select].quote);
@@ -261,47 +307,30 @@ function runGame(event){
     scoreBoard();
     //set gamestate
     gameState = "running";
-    //set timer
-
-    function timeRem(){ 
-        $("#counter").text(currentTime);
-        currentTime--;
-         if (currentTime === 0){
-            window.alert("Times up! Feel free to keep listening!");
-            clearInterval (timerId);
-            $("#counter").text("");
-            wrong++;
-            answered();
-            return;
-            }
-        else if((gameState==="answered")||(gameState==="scoring")){
-            clearInterval(timerId);
-            return}
-        
+    //listen for answer selection
+    if (gameState=="running"){$("#answer-list li").click(score)
     }
-    currentTime = 45;
-    startClock();
-    function startClock(){
-    let timerId = setInterval(timeRem, 1000)}
-    //score event
+    //set timer
+    startClock2();    
+        //score event
     function score(event){
         event.preventDefault()
         if (gameState =="running"){
+            gameState="answered";
             var response = $(this).text();
             if (response === qCard[select].person){
                 points+=currentTime;
-                clearInterval(timerId);
                 correct++;
+                console.log(points);
                 answered();
             }
             else if(!(response === qCard[select].person)){
-                clearInterval(timerId);
                 wrong++;
+                gameState="answered";
                 answered();
             }
         }
     }
-    //listen for answer selection
-    if (gameState=="running"){$("#answer-list li").click(score)}
+
 
 }
