@@ -88,10 +88,10 @@ var highScore = []
 
 $("#quote").text(`"A quote of the composer will be here"`);
 $("#initials").hide();
+
 //rando selection
-// var select = 5;
  var select = 0;
-//rando code here
+//rando function here
 function selectRando(){
     rando = Math.floor(Math.random() * qCard.length);
     return rando;
@@ -100,14 +100,14 @@ function selectRando(){
 
 //Set Answers
 function setAnswers(){
-$("#answer-1").text(qCard[select].choices[0]);
-$("#answer-2").text(qCard[select].choices[1]);
-$("#answer-3").text(qCard[select].choices[2]);
-$("#answer-4").text(qCard[select].choices[3]);
-$("#answer-1").css({"background-color": ""});
-$("#answer-2").css({"background-color": ""});
-$("#answer-3").css({"background-color": ""});
-$("#answer-4").css({"background-color": ""});
+    $("#answer-1").text(qCard[select].choices[0]);
+    $("#answer-2").text(qCard[select].choices[1]);
+    $("#answer-3").text(qCard[select].choices[2]);
+    $("#answer-4").text(qCard[select].choices[3]);
+    $("#answer-1").css({"background-color": ""});
+    $("#answer-2").css({"background-color": ""});
+    $("#answer-3").css({"background-color": ""});
+    $("#answer-4").css({"background-color": ""});
 }
 
 //reveal answer
@@ -141,6 +141,12 @@ function setBg(){
         //quiz start
         //quiz next
         //quiz finish
+
+//scoreboard
+function scoreBoard(){
+    $(".score").text("Correct: " + correct + " Wrong: " + wrong);
+}
+
 //set trackname
 function displayTrack(){
     var trackName = qCard[select].trackName;
@@ -167,7 +173,7 @@ function answered(){
         } else if(!(answeredQ==5)){
             $("#answer-btn").show();
             $("#answer-btn").text("Next");
-            $("#answer-btn").click(runGame); }   
+        }   
 }
 
 //Enter High Score
@@ -229,14 +235,8 @@ function createTable(){
 
 }
 
-//scoreboard
-function scoreBoard(){
-    $(".score").text("Correct: " + correct + " Wrong: " + wrong);
-}
 
-//listen for start
-var gameState = "landing";
-$("#answer-btn").click(runGame);
+
 
 //timer
 // let timerId;
@@ -263,27 +263,32 @@ $("#answer-btn").click(runGame);
 //     currentTime--;
 //     $("#counter").text(currentTime);} 
 // }
-let currentTime = 45;
+var currentTime = 45;
 function startClock2(){
     var interval = setInterval(function() {
         currentTime--;
-        if (currentTime >= 0) {
+        if (currentTime > 0) {
             $("#counter").text(currentTime);
         }
         if((gameState==="answered")||(gameState==="scoring")){
             clearInterval(interval);
-            }
+            return;
+        }
         if (currentTime === 0) {
+            $("#counter").text(currentTime);
             wrong++;
             clearInterval(interval);
             answered();
             window.alert("Times up! Feel free to keep listening!");
-            
+            return;  
         }
 
     }, 1000);
 }
 
+//listen for start
+var gameState = "landing";
+$("#answer-btn").click(runGame);
 
 //Main function
 function runGame(event){
@@ -307,21 +312,21 @@ function runGame(event){
     scoreBoard();
     //set gamestate
     gameState = "running";
-    //listen for answer selection
-    if (gameState=="running"){$("#answer-list li").click(score)
-    }
     //set timer
-    startClock2();    
+    currentTime = 45;
+    startClock2();   
+    //listen for answer selection
+    if (gameState=="running"){$("#answer-list li").click(score)} 
         //score event
     function score(event){
         event.preventDefault()
         if (gameState =="running"){
-            gameState="answered";
             var response = $(this).text();
             if (response === qCard[select].person){
                 points+=currentTime;
                 correct++;
                 console.log(points);
+                gameState="answered";
                 answered();
             }
             else if(!(response === qCard[select].person)){
@@ -331,6 +336,5 @@ function runGame(event){
             }
         }
     }
-
 
 }
