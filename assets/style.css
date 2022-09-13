@@ -61,16 +61,18 @@ html, body{
     padding: 4px;
     color: var(--lac)
 }
+ol{
+    padding-left: 0px;
+}
 #answer-list{
-    list-style:outside;
-    list-style-type: upper-roman;
+    list-style:inside;
+    list-style-type: none;
 }
 #answer-list li {
     text-align: center;
     margin: 4px;
     padding: 4px;
-    margin-left: 0px;
-    padding-left:0px;
+
 }
 #answer-list li:hover{
     background-color: var(--lac);
