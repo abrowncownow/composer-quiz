@@ -4,13 +4,14 @@
 
 ## Description
 
-Robust quiz game on classical composers. Includes:
+Robust quiz game on classical composers. Features:
 
--   Informational how-to landing page
--   A large selection of randomly selected quiz cards
+-   Informational how-to landing page.
+-   A large array of randomly selected quiz cards.
 -   Dynamically updating background image, quote, and music related to the correct composer.
--   Timer remaining function that pauses upon answering to allow user to continue enjoying music before proceeding to next question.
--   Score card displays correct and wrong answers.
+-   Time remaining function that pauses after answering to allow user to continue enjoying the backgorund music before proceeding to the next question.
+-   Track name and composer displayed after user answer or the timer expiration.
+-   Score card displaying correct and wrong answers.
 -   Audio control panel at bottom of page allows user to:
     -   play
     -   pause
