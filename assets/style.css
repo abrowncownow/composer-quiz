@@ -43,6 +43,7 @@ html, body{
     color: var(--bgc)}  
 .card{
     padding: 4px;
+    margin: 4px;
 }
 .card-header{
     align-self:flex-start;
@@ -63,7 +64,6 @@ html, body{
 #answer-list{
     list-style:outside;
     list-style-type: upper-roman;
-    margin-left: -15px;
 }
 #answer-list li {
     text-align: center;
